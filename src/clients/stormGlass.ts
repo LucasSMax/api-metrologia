@@ -76,7 +76,7 @@ export class StormGlass {
         axiosError.response.status
       ) {
         throw new StormGlassResponseError(
-          `Error: ${JSON.stringify(axiosError?.response?.data)} Code: ${axiosError?.response?.status}`
+          `Error: ${JSON.stringify(axiosError.response.data)} Code: ${axiosError.response.status}`
         );
       }
       // The type is temporary given we will rework it in the upcoming chapters
