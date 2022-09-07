@@ -5,7 +5,6 @@ import bodyParser from 'body-parser';
 import { ForecastController } from './controller/forecast';
 
 export class SetupServer extends Server {
-
   /*
    * same as this.port = port, declaring as private here will
    * add the port variable to the SetupServer instance
@@ -18,7 +17,7 @@ export class SetupServer extends Server {
    * We use a different method to init instead of using the constructor
    * this way we allow the server to be used in tests and normal initialization
    */
-  public init():void {
+  public init(): void {
     this.setupExpress();
     this.setupControllers();
   }
