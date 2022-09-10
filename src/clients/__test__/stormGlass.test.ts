@@ -2,15 +2,16 @@ import { StormGlass } from '@src/clients/stormGlass';
 import * as HTTPUtil from '@src/util/request';
 import stormGlassWeather3HoursFixture from '@test/fixtures/stormglass_weather_3_hours.json';
 import stormGlassNormalizedWeather3HoursFixture from '@test/fixtures/stormglass_normalized_response_3_hours.json';
-import { AxiosError } from 'axios';
 
 jest.mock('@src/util/request');
 
 describe('StormGlass client', () => {
-  const mockedRequestClass = HTTPUtil.Request as jest.Mocked<typeof HTTPUtil.Request>;
+  const mockedRequestClass = HTTPUtil.Request as jest.Mocked<
+    typeof HTTPUtil.Request
+  >;
   const mockedRequest = new HTTPUtil.Request() as jest.Mocked<HTTPUtil.Request>;
 
-  it('should return the normalized forecast from the StormFlass service', async () => {
+  it('should return the normalized forecast from the StormGlass service', async () => {
     const lat = -33.784896;
     const lng = 151.4644;
 

@@ -2,6 +2,7 @@ import { InternalError } from '@src/util/errors/internal-errors';
 import config, { IConfig } from 'config';
 import * as HTTPUtil from '@src/util/request';
 import { AxiosError } from 'axios';
+import { request } from 'http';
 
 export interface StormGlassPointSource {
   readonly [key: string]: number;
@@ -79,17 +80,12 @@ export class StormGlass {
       /**
        * This is handling the Axios errors specifically
        */
-      // const axiosError = err as AxiosError;
-      if (
-        err instanceof Error &&
-        HTTPUtil.Request.isRequestError(err)
-      ) {
-
+      if (err instanceof Error && HTTPUtil.Request.isRequestError(err)) {
         throw new StormGlassResponseError(
           `Error: ${JSON.stringify((err as AxiosError).response?.data)} Code: ${
             (err as AxiosError).response?.status
           }`
-        )
+        );
       }
       // The type is temporary given we will rework it in the upcoming chapters
       throw new ClientRequestError((err as { message: any }).message);
