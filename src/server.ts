@@ -3,6 +3,7 @@ import { Server } from '@overnightjs/core';
 import { Application } from 'express';
 import bodyParser from 'body-parser';
 import { ForecastController } from './controller/forecast';
+import * as database from '@src/database';
 
 export class SetupServer extends Server {
   /*
@@ -17,9 +18,10 @@ export class SetupServer extends Server {
    * We use a different method to init instead of using the constructor
    * this way we allow the server to be used in tests and normal initialization
    */
-  public init(): void {
+  public async init(): Promise<void> {
     this.setupExpress();
     this.setupControllers();
+    await this.dataBaseSetup();
   }
 
   private setupExpress(): void {
@@ -30,6 +32,14 @@ export class SetupServer extends Server {
   private setupControllers(): void {
     const forecastController = new ForecastController();
     this.addControllers([forecastController]);
+  }
+
+  private async dataBaseSetup(): Promise<void> {
+    await database.connect();
+  }
+
+  public async close(): Promise<void> {
+    await database.close();
   }
 
   public getApp(): Application {
