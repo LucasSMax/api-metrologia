@@ -9,4 +9,4 @@ beforeAll(async () => {
   global.testRequest = supertest(server.getApp());
 });
 
-afterAll(async() => await server.close());
+afterAll(async () => await server.close());
