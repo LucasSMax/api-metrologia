@@ -9,17 +9,16 @@ export abstract class BaseController {
   ): void {
     if (error instanceof mongoose.Error.ValidationError) {
       const clientErrors = this.handleClientErrors(error);
-      res
-        .status(clientErrors.code)
-        .send(clientErrors);
+      res.status(clientErrors.code).send(clientErrors);
     } else {
-      res
-        .status(500)
-        .send({ error: 'Something went wrong!' });
+      res.status(500).send({ error: 'Something went wrong!' });
     }
   }
 
-  private handleClientErrors(error: mongoose.Error.ValidationError): {code: number, error: string}{
+  private handleClientErrors(error: mongoose.Error.ValidationError): {
+    code: number;
+    error: string;
+  } {
     const duplicatedKindErrors = Object.values(error.errors).filter(
       (err) => err.kind === CUSTOM_VALIDATION.DUPLICATED
     );
@@ -29,5 +28,4 @@ export abstract class BaseController {
       return { code: 422, error: error.message };
     }
   }
-
 }
