@@ -36,7 +36,11 @@ export class SetupServer extends Server {
     const beachesController = new BeachesController();
     const usersController = new UsersController();
 
-    this.addControllers([forecastController, beachesController, usersController]);
+    this.addControllers([
+      forecastController,
+      beachesController,
+      usersController,
+    ]);
   }
 
   private async dataBaseSetup(): Promise<void> {
@@ -49,8 +53,8 @@ export class SetupServer extends Server {
 
   public start(): void {
     this.app.listen(this.port, () => {
-      console.info('Server listening on port:', this.port)
-    })
+      console.info('Server listening on port:', this.port);
+    });
   }
 
   public getApp(): Application {

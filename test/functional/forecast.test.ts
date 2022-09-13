@@ -4,14 +4,13 @@ import stormGlassWeather3HoursFixture from '@test/fixtures/stormglass_weather_3_
 import nock from 'nock';
 
 describe('Beach forecast functional tests', () => {
-  beforeEach(async() => {
+  beforeEach(async () => {
     await Beach.deleteMany({});
-    const defaultBeach = 
-    {
-        lat: -33.792726,
-        lng: 151.289824,
-        name: 'Manly',
-        position: BeachPosition.E,
+    const defaultBeach = {
+      lat: -33.792726,
+      lng: 151.289824,
+      name: 'Manly',
+      position: BeachPosition.E,
     };
 
     const beach = new Beach(defaultBeach);

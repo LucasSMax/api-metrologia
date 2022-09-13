@@ -12,7 +12,7 @@ export class BeachesController extends BaseController {
       const result = await beach.save();
       res.status(201).send(result);
     } catch (error) {
-      this.sendCreatedUpdatedErroorResponse(res, error)
+      this.sendCreatedUpdatedErrorResponse(res, error);
     }
   }
 }

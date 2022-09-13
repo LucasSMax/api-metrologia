@@ -4,16 +4,15 @@ import { User } from '@src/models/user';
 import { BaseController } from '.';
 
 @Controller('user')
-export class UsersController extends BaseController{
+export class UsersController extends BaseController {
   @Post('')
   public async create(req: Request, res: Response): Promise<void> {
-    try
-    {
-      const user = new User(req.body); 
+    try {
+      const user = new User(req.body);
       const newUser = await user.save();
       res.status(201).send(newUser);
-    } catch(error) {
-      this.sendCreatedUpdatedErroorResponse(res, error)
+    } catch (error) {
+      this.sendCreatedUpdatedErrorResponse(res, error);
     }
   }
 }
